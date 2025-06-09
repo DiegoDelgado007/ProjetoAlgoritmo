@@ -1,6 +1,7 @@
 # Algoritmo de Livros - C
 # Inicializar Projeto
 - Compile o código no Aplicativo de sua Preferência ;
+- Selecione o Aplicativo como Administrador, para evitar problemas ;
 - Execute o ```.exe``` que será gerado.<br><br>
 
  ![image](https://github.com/user-attachments/assets/6d80b0ae-f7ee-4fec-989c-befeec807dbf)
