@@ -10,7 +10,7 @@
     Projeto: Cadastro de Livro para biblioteca
     Matéria: Algoritmo e Estrutura de Dados
 
-    Anotação Parte 1: Tipo de fila utilizado: Fila Linear Dinâmica (Lista Encadeada Simples).
+      Anotação 1: Tipo de fila utilizado: Fila Linear Dinâmica (Lista Encadeada Simples).
     - Não tem tamanho fixo, cresce e diminui conforme a necessidade.
     - Inserção (Enfilerado) no final da fila é O(1) com um ponteiro 'tras'.
     - Remoção (Desenfilerar) do início da fila é O(1) com um ponteiro 'frente'.
@@ -19,25 +19,25 @@
     - Desvantagens: Acesso a elementos por índice é O(n), maior consumo de memória por nó (devido ao ponteiro).
 */
 
-// Anotação Parte 2: Estrutura de um livro
+// Anotação 2: Estrutura de um livro
 typedef struct {
     char titulo[TAM_TITULO];
     char autor[TAM_AUTOR];
     char dataRegistro[20];
 } Livro;
 
-// Nova Anotação: Estrutura de um Nó da Lista Encadeada
+// Anotação 3: Estrutura de um Nó da Lista Encadeada
 typedef struct NoLivro {
     Livro dadosLivro;
     struct NoLivro *proximo; 
 } NoLivro;
 
-// Anotação Parte 3: Fila de livros (agora baseada em lista encadeada) Uso de ponteiros para o ptimeiro nó da fila, ultimo nó e controle dos números de livros 
+// Anotação 4: Fila de livros (agora baseada em lista encadeada) Uso de ponteiros para o ptimeiro nó da fila, ultimo nó e controle dos números de livros 
 
 typedef struct {
-    NoLivro *frente; // Ponteiro para o primeiro nó da fila
-    NoLivro *tras;   // Ponteiro para o último nó da fila
-    int tamanho;     // Para controle fácil do número de livros
+    NoLivro *frente; 
+    NoLivro *tras;   
+    int tamanho;   
 } FilaLivros;
 
 // --- Protótipos das Funções ---
@@ -102,26 +102,26 @@ int main() {
 
 // --- Implementação das Funções para Lista Encadeada ---
 
-// Anotação Parte 4: Inicialização da fila
+// Anotação 5: Inicialização da fila
 void inicializarFila(FilaLivros *fila) {
     fila->frente = NULL;
     fila->tras = NULL;
     fila->tamanho = 0;
 }
 
-// Anotação Parte 5: Verifica se a fila está vazia (para lista encadeada)
+// Anotação 6: Verifica se a fila está vazia (para lista encadeada)
 int filaVazia(FilaLivros *fila) {
     return fila->frente == NULL;
 }
 
-// Anotação Parte 7: Pega a data e hora atual para registro
+// Anotação 7: Pega a data e hora atual para registro
 void pegarDataHora(char *dataHora) {
     time_t agora = time(NULL);
     struct tm *tm_info = localtime(&agora);
     strftime(dataHora, 20, "%d/%m/%Y %H:%M", tm_info);
 }
 
-// Anotação Parte 8: Remove o '\n' do final da string
+// Anotação 8: Remove o '\n' do final da string
 void tirarEnter(char *texto) {
     int len = strlen(texto);
     if (len > 0 && texto[len - 1] == '\n') {
@@ -129,7 +129,7 @@ void tirarEnter(char *texto) {
     }
 }
 
-// Anotação Parte 9: Adiciona um novo livro à fila (enqueue em lista encadeada)
+// Anotação 9: Adiciona um novo livro à fila (enqueue em lista encadeada)
 void adicionarLivro(FilaLivros *fila) {
     NoLivro *novoNo = (NoLivro *)malloc(sizeof(NoLivro));
     if (novoNo == NULL) {
@@ -161,7 +161,7 @@ void adicionarLivro(FilaLivros *fila) {
     printf("Livro adicionado com sucesso!\n");
 }
 
-// Anotação Parte 10: Lista todos os livros na fila
+// Anotação 10: Lista todos os livros na fila
 void listarLivros(FilaLivros *fila) {
     if (filaVazia(fila)) {
         printf("Nenhum livro registrado na biblioteca.\n");
@@ -180,7 +180,7 @@ void listarLivros(FilaLivros *fila) {
     printf("============================\n");
 }
 
-// Anotação Parte 11: Esse trecho é utilizado para Remover um livro da fila por posição
+// Anotação 11: Esse trecho é utilizado para Remover um livro da fila por posição
 void removerLivro(FilaLivros *fila) {
     if (filaVazia(fila)) {
         printf("Nenhum livro para remover da biblioteca.\n");
@@ -220,13 +220,13 @@ void removerLivro(FilaLivros *fila) {
             fila->tras = anterior;
         }
     }
-
-    free(noRemover); // Anotação Parte 12: Libera a memória do nó removido
+    // Anotação 12: Libera a memória do nó removido
+    free(noRemover); 
     fila->tamanho--;
     printf("Livro removido com sucesso!\n");
 }
 
-// Nova Função: Salva os livros no arquivo livros.txt
+// Anotação 13: Nova Função, Salva os livros no arquivo livros.txt
 void salvarLivrosEmArquivo(FilaLivros *fila) {
     FILE *arquivo = fopen("livros.txt", "w");
     if (arquivo == NULL) {
